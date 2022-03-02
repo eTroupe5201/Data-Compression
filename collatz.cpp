@@ -1,6 +1,6 @@
 #include <iostream>
 
-int sequence(long n)
+int sequence(long n){
 int count = 1;
 while(n != 1){
 if(n % 2 == 0){
