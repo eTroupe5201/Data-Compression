@@ -1,4 +1,4 @@
-package DataComp;
+package DataCompression;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -8,8 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import DataComp.BinaryStdIn; //DataCompression.BinaryStdIn;
-import DataComp.BinaryStdOut;//DataCompression.BinaryStdOut;
+import DataCompression.BinaryStdIn;
+import DataCompression.BinaryStdOut;
 
 public class RunLengthExpand 
 {
