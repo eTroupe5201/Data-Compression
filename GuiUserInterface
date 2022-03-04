@@ -1,0 +1,87 @@
+package dataCompression;
+
+import java.awt.CardLayout;
+import java.io.BufferedOutputStream;
+import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.GridLayout;
+
+public class GuiUserInterface extends JFrame implements ActionListener{
+	JFrame frame;
+	String choice;
+	JButton button;
+	String name;
+	
+	 GuiUserInterface() throws IOException{
+		
+		 try {
+	    		 frame = new JFrame("GUI Options");
+	    		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+	            ex.printStackTrace();
+	        }
+			this.setLayout(new GridLayout());
+			
+		 JButton BinaryDump = new JButton("Binary Dump");
+		 JButton RunLengthCompress = new JButton("Run Length Compress");
+		 JButton RunLengthExpand= new JButton("Run Length Expand");
+		 JButton HuffmanCompress = new JButton("Huffman Compress");
+		 JButton HuffmanExpand = new JButton("Huffman Expand");
+		
+		 JPanel panel = new JPanel();
+		
+		 panel.add(BinaryDump);
+		 panel.add(RunLengthCompress);
+		 panel.add(RunLengthExpand);
+		 panel.add(HuffmanCompress);
+		 panel.add(HuffmanExpand);
+		 
+////		 Font font = new Font("Courier", Font.PLAIN, 30);
+//	      BinaryDump.setFont(font);
+//	      RunLengthCompress.setFont(font);
+//	      RunLengthExpand.setFont(font);
+//	      HuffmanCompress.setFont(font);
+//	      HuffmanExpand.setFont(font);
+		 this.add(panel);
+
+	
+			
+		this.setLocationRelativeTo(null);
+		this.pack();
+		//this.setSize(500, 525);
+		this.setSize(200, 225);
+		this.setVisible(true);
+		
+		BinaryDump.addActionListener(this);	
+		RunLengthExpand.addActionListener(this);	
+		RunLengthCompress.addActionListener(this);
+		HuffmanExpand.addActionListener(this);
+		HuffmanCompress.addActionListener(this);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     
+		
+	 }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	
+		button = (JButton)e.getSource();
+	
+		name = button.getText();
+			this.dispose();
+		try {
+		
+			new FileChooser(name);
+		} catch (IllegalArgumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (Exception e1) {
+
+		}
+	}
+}
