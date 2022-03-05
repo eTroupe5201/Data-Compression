@@ -24,7 +24,7 @@ public class FileSaver extends JFrame implements ActionListener{
 		int status;
 		
 		FileSaver(String FileRequester) throws IOException{
-			System.out.println("in file saver");
+	
 	    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	try {
 	    		frame = new JFrame("Save Dialog");
@@ -50,8 +50,7 @@ public class FileSaver extends JFrame implements ActionListener{
 				File RunLengthCompressFile = saveFile.getSelectedFile().getAbsoluteFile();
       
 				if (status == JFileChooser.APPROVE_OPTION) {
-					System.out.println("RUN LENGTH COMPRESS In File Chooser: " + RunLengthCompressFile.getParent());
-					System.out.println(RunLengthCompressFile.getName());
+				
 					RunLengthCompress.RecieveOutputFile(RunLengthCompressFile);
 				} else if (status == JFileChooser.CANCEL_OPTION) {
 					System.out.println("canceled");
@@ -64,8 +63,6 @@ public class FileSaver extends JFrame implements ActionListener{
 				File RunLengthExpandFile = saveFile.getSelectedFile().getAbsoluteFile();
 		       
 				if (status == JFileChooser.APPROVE_OPTION) {	
-					System.out.println("RUN LENGTH EXPAND In File Chooser: " + RunLengthExpandFile.getParent());
-					System.out.println(RunLengthExpandFile.getName());
 					RunLengthExpand.RecieveOutputFile(RunLengthExpandFile);
 				} else if (status == JFileChooser.CANCEL_OPTION) {
 					System.out.println("canceled");
@@ -77,8 +74,7 @@ public class FileSaver extends JFrame implements ActionListener{
 		        File huffmanExpandFile = saveFile.getSelectedFile().getAbsoluteFile();
 		       
 				if (status == JFileChooser.APPROVE_OPTION) {
-					System.out.println("HUFFMAN EXPAND In File Chooser: " + huffmanExpandFile.getParent());
-					System.out.println(huffmanExpandFile.getName());
+					
 					HuffmanExpand.RecieveOutputFile(huffmanExpandFile);
 				}
 				else if (status == JFileChooser.CANCEL_OPTION) {
@@ -92,8 +88,7 @@ public class FileSaver extends JFrame implements ActionListener{
 		        File HuffmanCompressFile = saveFile.getSelectedFile().getAbsoluteFile();
 		       
 				if (status == JFileChooser.APPROVE_OPTION) {
-					System.out.println("HUFFMAN COMPRESS In File Chooser: " + HuffmanCompressFile.getParent());
-					System.out.println(HuffmanCompressFile.getName());
+					
 					HuffmanCompress.RecieveOutputFile(HuffmanCompressFile);
 				}
 				else if (status == JFileChooser.CANCEL_OPTION) {
