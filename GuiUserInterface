@@ -1,6 +1,6 @@
 package dataCompression;
 
-import java.awt.CardLayout;
+import java.awt.GridLayout;
 import java.io.BufferedOutputStream;
 import java.awt.event.*;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.GridLayout;
+
 
 public class GuiUserInterface extends JFrame implements ActionListener{
 	JFrame frame;
@@ -22,66 +22,67 @@ public class GuiUserInterface extends JFrame implements ActionListener{
 		 try {
 	    		 frame = new JFrame("GUI Options");
 	    		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-	            ex.printStackTrace();
-	        }
-			this.setLayout(new GridLayout());
-			
-		 JButton BinaryDump = new JButton("Binary Dump");
-		 JButton RunLengthCompress = new JButton("Run Length Compress");
-		 JButton RunLengthExpand= new JButton("Run Length Expand");
-		 JButton HuffmanCompress = new JButton("Huffman Compress");
-		 JButton HuffmanExpand = new JButton("Huffman Expand");
-		
-		 JPanel panel = new JPanel();
-		
-		 panel.add(BinaryDump);
-		 panel.add(RunLengthCompress);
-		 panel.add(RunLengthExpand);
-		 panel.add(HuffmanCompress);
-		 panel.add(HuffmanExpand);
-		 
-////		 Font font = new Font("Courier", Font.PLAIN, 30);
-//	      BinaryDump.setFont(font);
-//	      RunLengthCompress.setFont(font);
-//	      RunLengthExpand.setFont(font);
-//	      HuffmanCompress.setFont(font);
-//	      HuffmanExpand.setFont(font);
-		 this.add(panel);
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+					| UnsupportedLookAndFeelException ex) {
+				ex.printStackTrace();
+			}
+			// JPanel panel = new JPanel();
 
+			Container contentPane = frame.getContentPane();
+
+			JButton BinaryDump = new JButton("BINARY DUMP");
+			JButton RunLengthCompress = new JButton("RUN LENGTH COMPRESS");
+			JButton RunLengthExpand = new JButton("RUN LENGTH EXPAND");
+			JButton HuffmanCompress = new JButton("HUFFMAN COMPRESS");
+			JButton HuffmanExpand = new JButton("HUFFMAN EXPAND");
+
+			contentPane.add(BinaryDump);
+			contentPane.add(RunLengthCompress);
+			contentPane.add(RunLengthExpand);
+			contentPane.add(HuffmanCompress);
+			contentPane.add(HuffmanExpand);
+
+	 Font font = new Font("ARIAL", Font.PLAIN,14);
+	      BinaryDump.setFont(font);
+	      RunLengthCompress.setFont(font);
+	      RunLengthExpand.setFont(font);
+	      HuffmanCompress.setFont(font);
+	      HuffmanExpand.setFont(font);
+
+			this.add(contentPane);
 	
+			frame.setBackground(Color.BLACK);
+			this.setLocationRelativeTo(null);
+			this.pack();
+			this.setSize(450, 500);
+			this.setVisible(true);
+
+			BinaryDump.addActionListener(this);
+			RunLengthExpand.addActionListener(this);
+			RunLengthCompress.addActionListener(this);
+			HuffmanExpand.addActionListener(this);
+			HuffmanCompress.addActionListener(this);
 			
-		this.setLocationRelativeTo(null);
-		this.pack();
-		//this.setSize(500, 525);
-		this.setSize(200, 225);
-		this.setVisible(true);
-		
-		BinaryDump.addActionListener(this);	
-		RunLengthExpand.addActionListener(this);	
-		RunLengthCompress.addActionListener(this);
-		HuffmanExpand.addActionListener(this);
-		HuffmanCompress.addActionListener(this);
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	     
-		
+			frame.setLayout(new GridLayout(5,1));
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setLocationRelativeTo(null);
 	 }
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	
-		button = (JButton)e.getSource();
-	
-		name = button.getText();
-			this.dispose();
-		try {
-		
-			new FileChooser(name);
-		} catch (IllegalArgumentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (Exception e1) {
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			button = (JButton) e.getSource();
+
+			name = button.getText();
+			this.dispose();
+			try {
+
+				new FileChooser(name);
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Exception e1) {
+
+			}
 		}
 	}
-}
