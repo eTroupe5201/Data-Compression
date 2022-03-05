@@ -1,28 +1,56 @@
-package DataCompression; // Check package names for consistency
+package dataCompression;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 
-import DataCompression.BinaryStdIn;
-import DataCompression.BinaryStdOut;
-
-public class RunLengthCompress 
-{
+public class RunLengthCompress {
+	File file;
+	
 	private static final int RUN_SIZE    = 256;			//max size of run encoded
 	private static final int LENGHTH_OF_ENCODING = 8;	//number of digits to encode the size 
 	
-	public static void compress(String fileIn, String fileOut) throws IOException 
-	{
-		System.setIn(new FileInputStream(fileIn));
-		System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(fileOut))));
-		
+	private static InputStream currentStream;
+    public static FileOutputStream outputStream;
+    public static File outputFile;
+	
+public RunLengthCompress() {
+		// TODO Auto-generated constructor stub
+	}
+	    public static void CallFileSaver() throws IOException {
+    	System.out.println("Called the save file");
+    	String requester = "RUN LENGTH COMPRESS";
+    	new FileSaver(requester);
+    }
+	    
+    public static void RecieveOutputFile(File fileSaverOutputFile) {
+    	System.out.println("File recieved: " + fileSaverOutputFile);
+    	outputFile = fileSaverOutputFile; //from file saver 
+    }
+    
+    public static void compress(File file) throws IOException { 	
+    	System.out.println(outputFile);
+    	
+    	if(outputFile == null) {
+    	 CallFileSaver();
+    	}
+    	currentStream = new FileInputStream(file);
+    	System.setIn(currentStream);
+    	
+    	System.out.println("OUTPUT FILE:" + outputFile);
+    
+    	outputStream = new FileOutputStream(outputFile);
+    	System.setOut(new PrintStream(outputStream));
+    	
+    	System.out.println("output file set to: "+ outputFile.toString());    
 
-	        char run = 0; 
+    	System.out.println("Should read to Binary Stand in");
+    	System.out.println("In Run Length Compress:");
+
+    	 char run = 0; 
 	        boolean b = false;
 	        boolean old = false; 
 	        while (!BinaryStdIn.isEmpty()) { 
@@ -43,6 +71,9 @@ public class RunLengthCompress
 	        } 
 	        BinaryStdOut.write(run, LENGHTH_OF_ENCODING);
 	        BinaryStdOut.close();
-	    }
-	
+	    
+        
+        System.out.println("In Run Length Compress Again ");
+        
+    }
 }
