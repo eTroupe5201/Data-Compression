@@ -21,13 +21,11 @@ public RunLengthCompress() {
 		// TODO Auto-generated constructor stub
 	}
 	    public static void CallFileSaver() throws IOException {
-    	System.out.println("Called the save file");
     	String requester = "RUN LENGTH COMPRESS";
     	new FileSaver(requester);
     }
 	    
     public static void RecieveOutputFile(File fileSaverOutputFile) {
-    	System.out.println("File recieved: " + fileSaverOutputFile);
     	outputFile = fileSaverOutputFile; //from file saver 
     }
     
@@ -39,16 +37,9 @@ public RunLengthCompress() {
     	}
     	currentStream = new FileInputStream(file);
     	System.setIn(currentStream);
-    	
-    	System.out.println("OUTPUT FILE:" + outputFile);
     
     	outputStream = new FileOutputStream(outputFile);
     	System.setOut(new PrintStream(outputStream));
-    	
-    	System.out.println("output file set to: "+ outputFile.toString());    
-
-    	System.out.println("Should read to Binary Stand in");
-    	System.out.println("In Run Length Compress:");
 
     	 char run = 0; 
 	        boolean b = false;
@@ -72,8 +63,6 @@ public RunLengthCompress() {
 	        BinaryStdOut.write(run, LENGHTH_OF_ENCODING);
 	        BinaryStdOut.close();
 	    
-        
-        System.out.println("In Run Length Compress Again ");
         
     }
 }
