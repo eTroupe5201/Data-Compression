@@ -1,19 +1,49 @@
-package DataCompression.Huffman;
+package dataCompression;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 
-import DataCompression.BinaryStdIn;
-import DataCompression.BinaryStdOut;
-
 public class HuffmanExpand {
-		public static void expand(String fileIn, String fileOut) throws FileNotFoundException {
-			System.setIn(new FileInputStream(fileIn));
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(fileOut))));
-					
+	
+	  private static InputStream currentStream;
+	  public static FileOutputStream outputStream;
+	  public static BufferedOutputStream bufferedOutputStream;
+	  public static File outputFile;
+	
+	  public static void CallFileSaver() throws IOException {
+	   
+	    	String requester = "HUFFMAN EXPAND";
+	    	new FileSaver(requester);
+	    }
+		    
+	    public static void RecieveOutputFile(File file) {//from file saver
+	    
+	    	outputFile = file; 
+	    }
+	
+		public static void expand(File file) throws IOException {
+			
+			if(outputFile == null) {
+		    	 CallFileSaver();
+		    	}
+		    	
+		    	currentStream = new FileInputStream(file);
+		    	System.setIn(currentStream);
+		    	
+		    	System.out.println("OUTPUT FILE:" + outputFile);
+		    
+		    	outputStream = new FileOutputStream(outputFile);
+		    	
+		    	bufferedOutputStream = new BufferedOutputStream(outputStream);
+		    	
+		    	System.setOut(new PrintStream(outputStream));
+		    	
+	
 			HuffNode root = bitToTrie();
 			int length = BinaryStdIn.readInt();
 			char[] output = new char[length];
@@ -51,3 +81,5 @@ public class HuffmanExpand {
 			}
 		}
 }
+
+
