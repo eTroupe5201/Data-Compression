@@ -18,7 +18,6 @@ public class RunLengthExpand {
     RunLengthExpand() { }
 
 	    public static void CallFileSaver() throws IOException {
-    	System.out.println("Called the save file");
     	String requester = "RUN LENGTH EXPAND";
     	new FileSaver(requester);
     }
@@ -36,16 +35,10 @@ public class RunLengthExpand {
     	
     	currentStream = new FileInputStream(file);
     	System.setIn(currentStream);
-    	
-    	System.out.println("OUTPUT FILE:" + outputFile);
     
     	outputStream = new FileOutputStream(outputFile);
     	System.setOut(new PrintStream(outputStream));
-    	
-    	System.out.println("output file set to: "+ outputFile.toString());    
-    	System.out.println("In Run Length Expand:");
 
-    	
     	 boolean b = false; 
 	        while (!BinaryStdIn.isEmpty()) {
 	            int run = BinaryStdIn.readInt(LENGTH_OF_ENCODING); 
