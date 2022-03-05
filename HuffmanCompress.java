@@ -1,4 +1,5 @@
-package DataCompression.Huffman;
+package dataCompression;
+
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -6,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,18 +15,50 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 
-import DataCompression.BinaryStdIn;
-import DataCompression.BinaryStdOut;
 
 public class HuffmanCompress {
+	public static FileOutputStream outputStream;
+	private static InputStream currentStream;
+	public static File outputFile;
+	public static BufferedOutputStream bufferedOutputStream;
+    public static void CallFileSaver() throws IOException {
 	
-		public static void compress(String fileIn, String fileOut) throws IOException {
-			System.setIn(new FileInputStream(fileIn));
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(fileOut))));
-			
+	String requester = "HUFFMAN COMPRESS";
+	new FileSaver(requester);
+}
+    
+public static void RecieveOutputFile(File file) {//from file saver?
+	System.out.println("File recieved: " + file);
+	outputFile = file; //from file saver 
+}
+
+	
+		public static void compress(File file) throws IOException {
+		
+			if (outputFile == null) {
+				CallFileSaver();
+			}
+
+			currentStream = new FileInputStream(file);
+	    	System.setIn(currentStream);
+	    	
+	    	System.out.println("OUTPUT FILE:" + outputFile);
+	    
+	    	outputStream = new FileOutputStream(outputFile);
+	    	
+	    	try {
+				bufferedOutputStream = new BufferedOutputStream(outputStream);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	System.setOut(new PrintStream(outputStream));
+	    	
+	  
+
 			String str = BinaryStdIn.readString();
 			char[] input = str.toCharArray();
-			
+
 			//count frequency of each character in the input array
 			Map<Character, Integer> freq = new HashMap<>();
 			for(char c : input) {
