@@ -34,8 +34,6 @@ public class HuffmanExpand {
 		    	
 		    	currentStream = new FileInputStream(file);
 		    	System.setIn(currentStream);
-		    	
-		    	System.out.println("OUTPUT FILE:" + outputFile);
 		    
 		    	outputStream = new FileOutputStream(outputFile);
 		    	
