@@ -1,27 +1,52 @@
-package DataCompression;
+package dataCompression;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 
-import DataCompression.BinaryStdIn;
-import DataCompression.BinaryStdOut;
-
-public class RunLengthExpand 
-{
+public class RunLengthExpand {
+	private static InputStream currentStream;
 	private static final int RUN_SIZE    = 256;			//max size of run encoded
 	private static final int LENGTH_OF_ENCODING = 8;	//number of digits to encode the size 
+    public static FileOutputStream outputStream;
+    public static File outputFile;
 	
-	public static void expand(String fileIn, String fileOut) throws IOException 
-	{
-		System.setIn(new FileInputStream(fileIn));
-		System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(fileOut))));
+    RunLengthExpand() { }
+
+	    public static void CallFileSaver() throws IOException {
+    	System.out.println("Called the save file");
+    	String requester = "RUN LENGTH EXPAND";
+    	new FileSaver(requester);
+    }
+	    
+    public static void RecieveOutputFile(File file) {//from file saver?
+    	System.out.println("File recieved: " + file);
+    	outputFile = file; //from file saver 
+    }
+   
+	public static void expand(File file) throws IOException { 
 		
-		 boolean b = false; 
+    	if(outputFile == null) {
+    	 CallFileSaver();
+    	}
+    	
+    	currentStream = new FileInputStream(file);
+    	System.setIn(currentStream);
+    	
+    	System.out.println("OUTPUT FILE:" + outputFile);
+    
+    	outputStream = new FileOutputStream(outputFile);
+    	System.setOut(new PrintStream(outputStream));
+    	
+    	System.out.println("output file set to: "+ outputFile.toString());    
+    	System.out.println("In Run Length Expand:");
+
+    	
+    	 boolean b = false; 
 	        while (!BinaryStdIn.isEmpty()) {
 	            int run = BinaryStdIn.readInt(LENGTH_OF_ENCODING); 
 	            for (int i = 0; i < run; i++) 	 
