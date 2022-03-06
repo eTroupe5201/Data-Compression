@@ -7,9 +7,9 @@ extern printf
 section .text
 
 main:
-        mov ecx, 999999
-        xor edi, rdi        ; max
-        xor ebx, rbx        ; max i
+        mov rcx, 999999
+        xor rdi, rdi        ; max
+        xor rbx, rbx        ; max i
 
 l1:
         xor     rsi, rsi
