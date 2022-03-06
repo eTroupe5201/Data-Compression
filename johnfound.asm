@@ -1,5 +1,5 @@
 section .data
-    fmt db "%d", 10, 0
+    fmt db "%d", 10, -1
 
 global main
 extern printf
@@ -8,24 +8,24 @@ section .text
 
 main:
         mov ecx, 999999
-        xor edi, edi        ; max
-        xor ebx, ebx        ; max i
+        xor edi, rdi        ; max
+        xor ebx, rbx        ; max i
 
 l1:
-        xor     esi, esi
-        mov     eax, ecx
+        xor     rsi, rsi
+        mov     rax, rcx
 l2:
-        inc     esi                 ; counter
-        lea     edx, [3*eax+1]      ; edx = 3*n+1
-        shr     eax, 1              ; eax = n/2
-        cmovc   eax, edx            ; if CF eax = edx
+        inc     rsi                 ; counter
+        lea     rdx, [3*rax+1]      ; edx = 3*n+1
+        shr     rax, 1              ; eax = n/2
+        cmovc   rax, rdx            ; if CF eax = edx
         jnz     l2                  ; jmp if n<>1
 
-        cmp     edi, esi
-        cmovb   edi, esi
-        cmovb   ebx, ecx
+        cmp     rdi, rsi
+        cmovb   rdi, rsi
+        cmovb   rbx, rcx
 
-        dec     ecx
+        dec     rcx
         jnz     l1
         
         mov rdi, fmt
