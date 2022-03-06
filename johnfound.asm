@@ -1,5 +1,5 @@
 section .data
-    fmt db "%d", 10, -1
+    fmt db "%d", 10, 0
 
 global main
 extern printf
