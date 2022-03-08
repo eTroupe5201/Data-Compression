@@ -22,7 +22,7 @@ public class RunLengthExpand {
     	new FileSaver(requester);
     }
 	    
-    public static void RecieveOutputFile(File file) {//from file saver?
+    public static void ReceiveOutputFile(File file) {//from file saver?
     	System.out.println("File recieved: " + file);
     	outputFile = file; //from file saver 
     }
