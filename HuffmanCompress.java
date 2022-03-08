@@ -61,7 +61,7 @@ public static void ReceiveOutputFile(File file) {//from file saver?
 			Map<Character, Integer> freq = new HashMap<>();
 			for(char c : input) {
 				if(freq.get(c) == null) {
-					freq.put(c, 1);
+					freq.put(c, 0);
 				}
 				freq.put(c, freq.get(c) + 1);
 				
