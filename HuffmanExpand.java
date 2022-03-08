@@ -66,6 +66,7 @@ public class HuffmanExpand {
 			//next line
 			BinaryStdOut.write("\n");
 			BinaryStdOut.close();
+			System.exit(0);
 			
 		}
 		private static HuffNode bitToTrie() {
