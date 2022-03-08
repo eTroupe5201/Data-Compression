@@ -25,7 +25,7 @@ public RunLengthCompress() {
     	new FileSaver(requester);
     }
 	    
-    public static void RecieveOutputFile(File fileSaverOutputFile) {
+    public static void ReceiveOutputFile(File fileSaverOutputFile) {
     	outputFile = fileSaverOutputFile; //from file saver 
     }
     
