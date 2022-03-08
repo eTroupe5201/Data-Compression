@@ -16,16 +16,8 @@ public class FileChooser extends JFrame implements ActionListener{
 	JFileChooser fileChooser;
 	String GuiInterfaceChoice;
 	
-	public FileChooser(String choice) throws IOException{
-		try {
-		GuiInterfaceChoice = choice;
-		FileChooserChoice(GuiInterfaceChoice);
-		} catch(IllegalArgumentException e1) {
-			;
-		}
-		}
 	
-	public void FileChooserChoice(String GuiInterfaceChoice) throws IOException{
+	public FileChooser(String GuiInterfaceChoice) throws IOException{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
@@ -47,14 +39,14 @@ public class FileChooser extends JFrame implements ActionListener{
 		switch(GuiInterfaceChoice) {
 		case "RUN LENGTH COMPRESS":
 			try {
-				status = fileChooser.showOpenDialog(null);
-		       
+				status = fileChooser.showOpenDialog(null);      
 				File RunLengthCompressFile = fileChooser.getSelectedFile().getAbsoluteFile();
-		       
 				if (status == JFileChooser.APPROVE_OPTION) {
 					RunLengthCompress.compress(RunLengthCompressFile);
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				} else if (status == JFileChooser.CANCEL_OPTION) {
 					System.out.println("canceled");
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
@@ -64,62 +56,53 @@ public class FileChooser extends JFrame implements ActionListener{
 		case "RUN LENGTH EXPAND":
 			status = fileChooser.showOpenDialog(null);
 	        File RunLengthExpandFile = fileChooser.getSelectedFile().getAbsoluteFile();
-	       
 			if (status == JFileChooser.APPROVE_OPTION) {	
 				RunLengthExpand.expand(RunLengthExpandFile);
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			} else if (status == JFileChooser.CANCEL_OPTION) {
 				System.out.println("canceled");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			break;
 
 		case "HUFFMAN EXPAND":
 			status = fileChooser.showOpenDialog(null);
 	        File huffmanExpandFile = fileChooser.getSelectedFile().getAbsoluteFile();
-	       
 			if (status == JFileChooser.APPROVE_OPTION) {
-				HuffmanExpand.expand(huffmanExpandFile);
+				HuffmanExpand.expand(huffmanExpandFile); 
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 			}
 			else if (status == JFileChooser.CANCEL_OPTION) {
 				System.out.println("canceled");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			break;
 
 		case "HUFFMAN COMPRESS":
-		
 			status = fileChooser.showOpenDialog(null);
 	        File HuffmanCompressFile = fileChooser.getSelectedFile().getAbsoluteFile();
-	       
 			if (status == JFileChooser.APPROVE_OPTION) {
-				HuffmanCompress.compress(HuffmanCompressFile);
+				HuffmanCompress.compress(HuffmanCompressFile);    
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	  
 			}
-			
 			else if (status == JFileChooser.CANCEL_OPTION) {
 				System.out.println("canceled");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			break;
 
-		case "BINARY DUMP":
-			status = fileChooser.showOpenDialog(null);
-	        File BinaryDumpFile = fileChooser.getSelectedFile().getAbsoluteFile();
-	       
-			if (status == JFileChooser.APPROVE_OPTION) {
-				BinaryDump.BinaryDumpFile(BinaryDumpFile);
-			}
-
-			else if (status == JFileChooser.CANCEL_OPTION) {
-				System.out.println("canceled");
-			}
-			break;
 		
 		default:
 			break;
 
 		}
+		this.dispose();
 	}	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	
-	
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.dispose();
+		return;
 	}
 }
