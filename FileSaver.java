@@ -45,7 +45,7 @@ public class FileSaver extends JFrame implements ActionListener {
 			File RunLengthCompressFile = saveFile.getSelectedFile().getAbsoluteFile();
 			if (status == JFileChooser.APPROVE_OPTION) {
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				RunLengthCompress.RecieveOutputFile(RunLengthCompressFile);
+				RunLengthCompress.ReceiveOutputFile(RunLengthCompressFile);
 			} else if (status == JFileChooser.CANCEL_OPTION) {
 				saveFile.cancelSelection();
 			}
@@ -57,7 +57,7 @@ public class FileSaver extends JFrame implements ActionListener {
 			File RunLengthExpandFile = saveFile.getSelectedFile().getAbsoluteFile();
 
 			if (status == JFileChooser.APPROVE_OPTION) {
-				RunLengthExpand.RecieveOutputFile(RunLengthExpandFile);
+				RunLengthExpand.ReceiveOutputFile(RunLengthExpandFile);
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			} else if (status == JFileChooser.CANCEL_OPTION) {
 				saveFile.cancelSelection();
@@ -71,7 +71,7 @@ public class FileSaver extends JFrame implements ActionListener {
 			if (status == JFileChooser.APPROVE_OPTION) {
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-				HuffmanExpand.RecieveOutputFile(huffmanExpandFile);
+				HuffmanExpand.ReceiveOutputFile(huffmanExpandFile);
 			} else if (status == JFileChooser.CANCEL_OPTION) {
 				saveFile.cancelSelection();
 			}
@@ -84,7 +84,7 @@ public class FileSaver extends JFrame implements ActionListener {
 
 			if (status == JFileChooser.APPROVE_OPTION) {
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				HuffmanCompress.RecieveOutputFile(HuffmanCompressFile);
+				HuffmanCompress.ReceiveOutputFile(HuffmanCompressFile);
 			} else if (status == JFileChooser.CANCEL_OPTION) {
 				saveFile.cancelSelection();
 			}
