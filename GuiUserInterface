@@ -1,88 +1,73 @@
 package dataCompression;
 
-import java.awt.GridLayout;
-import java.io.BufferedOutputStream;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 
+@SuppressWarnings("serial")
 public class GuiUserInterface extends JFrame implements ActionListener{
 	JFrame frame;
 	String choice;
 	JButton button;
 	String name;
 	
-	 GuiUserInterface() throws IOException{
+	GuiUserInterface() throws IOException {
+
+		try {
+			frame = new JFrame("GUI Options");
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException ex) {
+			ex.printStackTrace();
+		}
+		Container contentPane = frame.getContentPane();
+
+		JButton RunLengthCompress = new JButton("RUN LENGTH COMPRESS");
+		JButton RunLengthExpand = new JButton("RUN LENGTH EXPAND");
+		JButton HuffmanCompress = new JButton("HUFFMAN COMPRESS");
+		JButton HuffmanExpand = new JButton("HUFFMAN EXPAND");
+
+		contentPane.add(RunLengthCompress);
+		contentPane.add(RunLengthExpand);
+		contentPane.add(HuffmanCompress);
+		contentPane.add(HuffmanExpand);
+
+		Font font = new Font("ARIAL", Font.PLAIN, 14);
+
+		RunLengthCompress.setFont(font);
+		RunLengthExpand.setFont(font);
+		HuffmanCompress.setFont(font);
+		HuffmanExpand.setFont(font);
+
+		this.add(contentPane);
+		this.setLocationRelativeTo(null);
+		this.pack();
+		this.setSize(450, 500);
+		this.setVisible(true);
+
+		RunLengthExpand.addActionListener(this);
+		RunLengthCompress.addActionListener(this);
+		HuffmanExpand.addActionListener(this);
+		HuffmanCompress.addActionListener(this);
+
+		frame.setLayout(new GridLayout(4, 1));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		button = (JButton) e.getSource();
+		name = button.getText();
+		this.dispose();
+		try {
+			new FileChooser(name);
+		} catch (IllegalArgumentException e1) {
 		
-		 try {
-	    		 frame = new JFrame("GUI Options");
-	    		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-					| UnsupportedLookAndFeelException ex) {
-				ex.printStackTrace();
-			}
-			// JPanel panel = new JPanel();
+		} catch (Exception e1) {
 
-			Container contentPane = frame.getContentPane();
-
-			JButton BinaryDump = new JButton("BINARY DUMP");
-			JButton RunLengthCompress = new JButton("RUN LENGTH COMPRESS");
-			JButton RunLengthExpand = new JButton("RUN LENGTH EXPAND");
-			JButton HuffmanCompress = new JButton("HUFFMAN COMPRESS");
-			JButton HuffmanExpand = new JButton("HUFFMAN EXPAND");
-
-			contentPane.add(BinaryDump);
-			contentPane.add(RunLengthCompress);
-			contentPane.add(RunLengthExpand);
-			contentPane.add(HuffmanCompress);
-			contentPane.add(HuffmanExpand);
-
-	 Font font = new Font("ARIAL", Font.PLAIN,14);
-	      BinaryDump.setFont(font);
-	      RunLengthCompress.setFont(font);
-	      RunLengthExpand.setFont(font);
-	      HuffmanCompress.setFont(font);
-	      HuffmanExpand.setFont(font);
-
-			this.add(contentPane);
-	
-			frame.setBackground(Color.BLACK);
-			this.setLocationRelativeTo(null);
-			this.pack();
-			this.setSize(450, 500);
-			this.setVisible(true);
-
-			BinaryDump.addActionListener(this);
-			RunLengthExpand.addActionListener(this);
-			RunLengthCompress.addActionListener(this);
-			HuffmanExpand.addActionListener(this);
-			HuffmanCompress.addActionListener(this);
-			
-			frame.setLayout(new GridLayout(5,1));
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			this.setLocationRelativeTo(null);
-	 }
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-			button = (JButton) e.getSource();
-
-			name = button.getText();
-			this.dispose();
-			try {
-
-				new FileChooser(name);
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (Exception e1) {
-
-			}
 		}
 	}
+}
