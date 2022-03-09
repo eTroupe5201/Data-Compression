@@ -1,31 +1,55 @@
-public class BinaryDump {
+package dataCompression;
 
-    public static void dump() throws FileNotFoundException {
-		System.setIn(new FileInputStream(new File("abra.txt")));
-		int count = 0;
-		while(!BinaryStdIn.isEmpty()) {
-			BinaryStdIn.readBoolean();
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class BinaryDump {
+    
+	public static void dump(File file) throws IOException {
+	
+    	System.setIn(new FileInputStream(file)); //set file to standard input stream	
+		
+    	int count = 0; //init count
+		
+    	while(!BinaryStdIn.isEmpty()) { 
+			BinaryStdIn.readBoolean();   
 			count++;
 		}
+		
 		System.out.println (count + " bits");
-	}
-//     public static void main(String[] args) {
-//         int bitsPerLine = 16;
-//         if (args.length == 1) {
-//             bitsPerLine = Integer.parseInt(args[0]);
-//         }
+		
+		int answer = JOptionPane.showConfirmDialog(null, "Would you like the compression ratio?");
+		
+		//added switch to implement ratio calc
+		switch(answer) {
+		case JOptionPane.YES_OPTION:
+			calculateCompressionRatio(count);
+			break;
+		case JOptionPane.NO_OPTION:
+			break;
+		case JOptionPane.CANCEL_OPTION:
+			break;
+		default:
+			break;}
+	
+System.exit(0);
+		}
+		
+  
+public static void calculateCompressionRatio(int compressedFileSize) {
 
-//         int count;
-//         for (count = 0; !BinaryStdIn.isEmpty(); count++) {
-//             if (bitsPerLine == 0) {
-//                 BinaryStdIn.readBoolean();
-//                 continue;
-//             }
-//             else if (count != 0 && count % bitsPerLine == 0) StdOut.println();
-//             if (BinaryStdIn.readBoolean()) StdOut.print(1);
-//             else                           StdOut.print(0);
-//         }
-//         if (bitsPerLine != 0) StdOut.println();
-//         StdOut.println(count + " bits");
-//     }
+String userSize = JOptionPane.showInputDialog("What is the original size of the file?"); //ask user for size of original file
+
+int originalSize = Integer.parseInt(userSize);//parse user output
+
+int ratio = compressedFileSize / originalSize * 100 ; //calculate ratio 
+
+System.out.println("Compression Ratio is "+ ratio +"%"); //show user compression ratio
+
 }
