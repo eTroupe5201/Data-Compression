@@ -62,6 +62,8 @@ public RunLengthCompress() {
 	        } 
 	        BinaryStdOut.write(run, LENGHTH_OF_ENCODING);
 	        BinaryStdOut.close();
+	        currentStream.close();
+	        outputStream.close();
 	     	System.exit(0);
 	    
         
