@@ -1,6 +1,5 @@
 package dataCompression;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,10 +8,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public class HuffmanExpand {
-	
 	  private static InputStream currentStream;
 	  public static FileOutputStream outputStream;
-	  public static BufferedOutputStream bufferedOutputStream;
 	  public static File outputFile;
 	
 	  public static void CallFileSaver() throws IOException {
@@ -21,11 +18,11 @@ public class HuffmanExpand {
 	    	new FileSaver(requester);
 	    }
 		    
-	    public static void ReceiveOutputFile(File file) {//from file saver
+	    public static void ReceiveOutputFile(File file) {//from file saver?
 	    
-	    	outputFile = file; 
+	    	outputFile = file; //from file saver 
 	    }
-	
+	 
 		public static void expand(File file) throws IOException {
 			
 			if(outputFile == null) {
@@ -33,11 +30,10 @@ public class HuffmanExpand {
 		    	}
 		    	
 		    	currentStream = new FileInputStream(file);
+		    	
 		    	System.setIn(currentStream);
 		    
 		    	outputStream = new FileOutputStream(outputFile);
-		    	
-		    	bufferedOutputStream = new BufferedOutputStream(outputStream);
 		    	
 		    	System.setOut(new PrintStream(outputStream));
 		    	
@@ -65,8 +61,10 @@ public class HuffmanExpand {
 			}
 			//next line
 			BinaryStdOut.write("\n");
-			BinaryStdOut.close();
-			System.exit(0);
+		    BinaryStdOut.close();
+	        currentStream.close();
+	        outputStream.close();
+	        System.exit(0);
 			
 		}
 		private static HuffNode bitToTrie() {
