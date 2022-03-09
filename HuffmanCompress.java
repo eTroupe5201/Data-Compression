@@ -28,31 +28,22 @@ public class HuffmanCompress {
 }
     
 public static void ReceiveOutputFile(File file) {//from file saver?
-	System.out.println("File recieved: " + file);
-	outputFile = file; //from file saver 
-}
-
 	
+	outputFile = file; //from file saver 
+
+}
+		
 		public static void compress(File file) throws IOException {
 		
 			if (outputFile == null) {
-				CallFileSaver();
+				CallFileSaver(); // if output is null get file from file saver
 			}
-
-			currentStream = new FileInputStream(file);
-	    	System.setIn(currentStream);
-	    
-	    	outputStream = new FileOutputStream(outputFile);
-	    	
-	    	try {
-				bufferedOutputStream = new BufferedOutputStream(outputStream);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	System.setOut(new PrintStream(outputStream));
-	    	
-	  
+			
+			currentStream = new FileInputStream(file);//set currentStream to incoming file from chooser
+	    	System.setIn(currentStream); //setting System input to currentStream
+	    	//obj.setInputFile(file);
+	    	outputStream = new FileOutputStream(outputFile); // Set the outputstream to output file from file saver
+	    	System.setOut(new PrintStream(outputStream)); //set the current outputstream to new printstream and set to System out
 
 			String str = BinaryStdIn.readString();
 			char[] input = str.toCharArray();
@@ -91,6 +82,9 @@ public static void ReceiveOutputFile(File file) {//from file saver?
 				}
 			}
 			BinaryStdOut.close();
+			currentStream.close();
+			outputStream.close();
+			System.exit(0);	
 			
 		}
 		private static HuffNode buildTrie(Map<Character, Integer> freq) {
