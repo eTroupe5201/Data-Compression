@@ -47,6 +47,8 @@ public class RunLengthExpand {
 	            b = !b;
 	        }
 	        BinaryStdOut.close();
+		currentStream.close();
+	        outputStream.close();
 		System.exit(0);
 	}
 }
