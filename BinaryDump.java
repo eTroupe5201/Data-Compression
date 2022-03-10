@@ -50,6 +50,6 @@ double originalSize = Double.parseDouble(userSize);//parse user output
 
 double ratio = (compressedFileSize / originalSize) * 100; //calculate ratio 
 
-System.out.println("Compression Ratio is "+ String.format("%,.2f",ratio) +"%"); //show user compression ratio
+System.out.println("Compression Ratio is "+ String.format("%,.0f",ratio) +"%"); //show user compression ratio
 
 }
