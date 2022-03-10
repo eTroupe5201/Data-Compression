@@ -46,9 +46,9 @@ public static void calculateCompressionRatio(int compressedFileSize) {
 
 String userSize = JOptionPane.showInputDialog("What is the original size of the file?"); //ask user for size of original file
 
-int originalSize = Integer.parseInt(userSize);//parse user output
+double originalSize = Double.parseDouble(userSize);//parse user output
 
-int ratio = compressedFileSize / originalSize * 100 ; //calculate ratio 
+double ratio = (compressedFileSize / originalSize) * 100; //calculate ratio 
 
 System.out.println("Compression Ratio is "+ ratio +"%"); //show user compression ratio
 
