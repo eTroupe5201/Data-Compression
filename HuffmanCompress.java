@@ -17,34 +17,21 @@ import java.util.TreeMap;
 
 
 public class HuffmanCompress {
+private static InputStream currentStream;
 	public static FileOutputStream outputStream;
-	private static InputStream currentStream;
-	public static File outputFile;
-	public static BufferedOutputStream bufferedOutputStream;
-    public static void CallFileSaver() throws IOException {
-	
-	String requester = "HUFFMAN COMPRESS";
-	new FileSaver(requester);
-}
-    
-public static void ReceiveOutputFile(File file) {//from file saver?
-	
-	outputFile = file; //from file saver 
+	public static File global_output;
+	public static File global_input;
 
-}
-		
 		public static void compress(File file) throws IOException {
+		global_output = outputFile;
+		global_input = inputFile;
 		
-			if (outputFile == null) {
-				CallFileSaver(); // if output is null get file from file saver
-			}
-			
-			currentStream = new FileInputStream(file);//set currentStream to incoming file from chooser
-	    	System.setIn(currentStream); //setting System input to currentStream
-	    	//obj.setInputFile(file);
-	    	outputStream = new FileOutputStream(outputFile); // Set the outputstream to output file from file saver
-	    	System.setOut(new PrintStream(outputStream)); //set the current outputstream to new printstream and set to System out
+		    	currentStream = new FileInputStream(inputFile);
+		    	System.setIn(currentStream);
 
+		    	outputStream = new FileOutputStream(outputFile);
+		    	System.setOut(new PrintStream(outputStream));
+		
 			String str = BinaryStdIn.readString();
 			char[] input = str.toCharArray();
 
@@ -84,7 +71,7 @@ public static void ReceiveOutputFile(File file) {//from file saver?
 			BinaryStdOut.close();
 			currentStream.close();
 			outputStream.close();
-			System.exit(0);	
+		
 			
 		}
 		private static HuffNode buildTrie(Map<Character, Integer> freq) {
