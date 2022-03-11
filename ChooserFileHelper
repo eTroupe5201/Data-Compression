@@ -1,0 +1,74 @@
+package dataCompression;
+
+import java.io.File;
+import java.io.IOException;
+
+public class ChooserFileHelper {
+
+	File InputFile;
+	File OutputFile;
+
+//set output file
+	public void setOutputFile(File output) {
+		this.OutputFile = output;
+	}
+
+//get output file when needed
+public File getOutputFile() {
+		return OutputFile;
+	}
+
+//set inputfile
+	public void setInputFile(File input) {
+		this.InputFile = input;
+	}
+
+//get inputfile when needed
+	public File getnputFile() {
+		return InputFile;
+	}
+	
+  //receive incoming files, set them, send them to run length expand
+	public void receiveBothFilesRunLengthExpand(File input, File output) throws IOException {
+		setInputFile(input);
+		setOutputFile(output);
+		SendFilesRunExpand();
+	}
+  //receive incoming files, set them, send them to run length compress
+	public void receiveBothFilesRunLengthCompress(File input, File output) throws IOException {
+		setInputFile(input);
+		setOutputFile(output);
+		SendFilesRunCompress();
+	}
+  //receive incoming files, set them, send them to huffman expand
+	public void receiveBothFilesHuffmanExpand(File input, File output) throws IOException {
+		setInputFile(input);
+		setOutputFile(output);
+		SendFilesHuffmanExpand();
+	}
+  //receive incoming files, set them, send them to huffman compress
+	public void receiveBothFilesHuffmanCompress(File input, File output) throws IOException {
+		setInputFile(input);
+		setOutputFile(output);
+		SendFilesHuffmanCompress();
+	}
+
+	public void SendFilesRunCompress() throws IOException {
+
+			RunLengthCompress.compress(this.InputFile, this.OutputFile);// send file to Run Length Compress for
+		}
+	public void SendFilesRunExpand() throws IOException {
+
+		RunLengthExpand.expand(this.InputFile, this.OutputFile);// send file to Run Length Compress for
+	}
+	public void SendFilesHuffmanExpand() throws IOException {
+
+		HuffmanExpand.expand(this.InputFile, this.OutputFile);// send file to Run Length Compress for
+	}
+	public void SendFilesHuffmanCompress() throws IOException {
+
+		HuffmanCompress.compress(this.InputFile, this.OutputFile);// send file to Run Length Compress for
+	}
+
+
+	}
