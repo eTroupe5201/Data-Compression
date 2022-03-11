@@ -22,7 +22,7 @@ private static InputStream currentStream;
 	public static File global_output;
 	public static File global_input;
 
-		public static void compress(File file) throws IOException {
+		public static void compress(File inputFile, File outputFile) throws IOException {
 		global_output = outputFile;
 		global_input = inputFile;
 		
