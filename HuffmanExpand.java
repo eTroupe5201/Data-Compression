@@ -10,33 +10,24 @@ import java.io.PrintStream;
 public class HuffmanExpand {
 	  private static InputStream currentStream;
 	  public static FileOutputStream outputStream;
-	  public static File outputFile;
+	  public static File global_output;
+	  public static File global_input;
 	
-	  public static void CallFileSaver() throws IOException {
-	   
-	    	String requester = "HUFFMAN EXPAND";
-	    	new FileSaver(requester);
-	    }
-		    
-	    public static void ReceiveOutputFile(File file) {//from file saver?
-	    
-	    	outputFile = file; //from file saver 
-	    }
-	 
 		public static void expand(File file) throws IOException {
 			
-			if(outputFile == null) {
-		    	 CallFileSaver();
-		    	}
-		    	
-		    	currentStream = new FileInputStream(file);
-		    	
+			global_output = outputFile;
+			global_input = inputFile;
+			
+			try {
+		    	currentStream = new FileInputStream(inputFile);
 		    	System.setIn(currentStream);
-		    
+
 		    	outputStream = new FileOutputStream(outputFile);
-		    	
 		    	System.setOut(new PrintStream(outputStream));
-		    	
+			} catch (NullPointerException e1) {
+				
+				e1.printStackTrace();
+			}
 	
 			HuffNode root = bitToTrie();
 			int length = BinaryStdIn.readInt();
@@ -64,7 +55,7 @@ public class HuffmanExpand {
 		    BinaryStdOut.close();
 	        currentStream.close();
 	        outputStream.close();
-	        System.exit(0);
+	     
 			
 		}
 		private static HuffNode bitToTrie() {
