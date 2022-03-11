@@ -13,7 +13,7 @@ public class HuffmanExpand {
 	  public static File global_output;
 	  public static File global_input;
 	
-		public static void expand(File file) throws IOException {
+		public static void expand(File inputFile, File outputFile) throws IOException {
 			
 			global_output = outputFile;
 			global_input = inputFile;
