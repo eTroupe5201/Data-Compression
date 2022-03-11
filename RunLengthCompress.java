@@ -8,28 +8,23 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public class RunLengthCompress {
-	File file;
-	
 	private static final int RUN_SIZE    = 256;			//max size of run encoded
 	private static final int LENGHTH_OF_ENCODING = 8;	//number of digits to encode the size 
+	public static File output;
+	public static File input;
+
 	
-	private static InputStream currentStream;
-    public static FileOutputStream outputStream;
-    public static File outputFile;
-	
-public RunLengthCompress() {
-		// TODO Auto-generated constructor stub
-	}
-	    public static void CallFileSaver() throws IOException {
-    	String requester = "RUN LENGTH COMPRESS";
-    	new FileSaver(requester);
-    }
-	    
-    public static void ReceiveOutputFile(File fileSaverOutputFile) {
-    	outputFile = fileSaverOutputFile; //from file saver 
-    }
-    
-    public static void compress(File file) throws IOException { 	
+ public static void compress(File inputFile, File outputFile) throws IOException { 	  	
+    	
+    	output = outputFile;
+    	input = inputFile;
+    	
+		FileInputStream currentStream = new FileInputStream(inputFile);
+		System.setIn(currentStream);
+
+		FileOutputStream outputStream = new FileOutputStream(outputFile);
+		System.setOut(new PrintStream(outputStream));
+
     	System.out.println(outputFile);
     	
     	if(outputFile == null) {
@@ -64,7 +59,6 @@ public RunLengthCompress() {
 	        BinaryStdOut.close();
 	        currentStream.close();
 	        outputStream.close();
-	     	System.exit(0);
 	    
         
     }
