@@ -1,27 +1,22 @@
 package dataCompression.test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.File;
 import java.io.IOException;
-
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import dataCompression.RunLengthCompress;
 import dataCompression.RunLengthExpand;
 
-class RunLengthCompressTest {
+class RunLengthExpandTest {
+
 	Path outputPath, inputPath;
-	File inputFile, outputFile;
+	File InputFile, OutputFile;
 	
 	
 	@TempDir 
@@ -29,39 +24,33 @@ class RunLengthCompressTest {
 	
 		@Test
 	    public void test() throws IOException {
-		//   FileHelper helper = new FileHelper();
-		 
-			Path inputFilePath = tempDir.resolve("inputTestFile.txt");// create inputpath with temp directory
-			Files.writeString(inputFilePath, "ABRACADABRA!");// create test file for input
-
-			Path outputFilePath = tempDir.resolve("outputTestFile.txt");// create outputpath with temp directory
-			Files.writeString(outputFilePath, "");// create blank file for output
 			
-			inputFile = inputFilePath.toFile();// set the inputfile to the inputfilepath
-			outputFile = outputFilePath.toFile();// set the outputFile to the outputFilePath
-
-			RunLengthCompress.compress(inputFile, outputFile); // i need to get it from here
-
-			assertSame(outputFile, RunLengthCompress.output);
-			assertSame(inputFile, RunLengthCompress.input);
-
-			assertTrue(Files.exists(outputFilePath));
-			assertTrue(Files.exists(inputFilePath));
+			//Create a temp input path with temp directory and write to that path the content of the new file
+			Path inputFilePath = tempDir.resolve("inputTestFile.txt");
+			Files.writeString(inputFilePath, "");
 			
-			assertTrue(outputFile.exists());
-			assertTrue(inputFile.exists());
+			//Create temp output path with temp directory and create a blank file for output
+			Path outputFilePath = tempDir.resolve("outputTestFile.txt");
+			Files.writeString(outputFilePath, "");
+
+			//Set Temp Files To Temp Path
+			InputFile = inputFilePath.toFile();
+			OutputFile = outputFilePath.toFile();
+
+			List<String> content = new ArrayList<>();//create a new list to test the content of the output
+			content.add("ABRACADABRA!");
 			
-			List<String> content2 = new ArrayList<>();//create a new list to test the content of the output
-			content2.add("");
-
-			//Verify that content from RunLengthExpand's output file is the same as the expected content
-	 		assertTrue(content2.equals(Files.readAllLines(RunLengthCompress.output.toPath())));
-
-	 		
-
-		
+			//send temp files to RunLengthExpand
+			RunLengthExpand.expand(InputFile, OutputFile);
+			
+			//check to make sure temporary files that were created and they match the output/input files of RunLengthExpand
+			assertSame(OutputFile, RunLengthExpand.output);
+			assertSame(InputFile, RunLengthExpand.input);
+			
+			//Verify that content the from RunLengthExpand's output file is the same as the expected content
+			assertTrue(content.equals(Files.readAllLines(RunLengthExpand.output.toPath())));
+			
 		}
 		
 
-//https://blogs.oracle.com/javamagazine/post/working-and-unit-testing-with-temporary-files-in-java
 }
