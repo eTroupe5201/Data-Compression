@@ -9,35 +9,23 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public class RunLengthExpand {
-	private static InputStream currentStream;
 	private static final int RUN_SIZE    = 256;			//max size of run encoded
 	private static final int LENGTH_OF_ENCODING = 8;	//number of digits to encode the size 
-    public static FileOutputStream outputStream;
-    public static File outputFile;
+        public static File output;
+	public static File input;
 	
     RunLengthExpand() { }
 
-	    public static void CallFileSaver() throws IOException {
-    	String requester = "RUN LENGTH EXPAND";
-    	new FileSaver(requester);
-    }
-	    
-    public static void ReceiveOutputFile(File file) {//from file saver?
-    	System.out.println("File recieved: " + file);
-    	outputFile = file; //from file saver 
-    }
-   
-	public static void expand(File file) throws IOException { 
+	public static void expand(File inputFile, File outputFile) throws IOException { 
 		
-    	if(outputFile == null) {
-    	 CallFileSaver();
-    	}
-    	
-    	currentStream = new FileInputStream(file);
-    	System.setIn(currentStream);
-    
-    	outputStream = new FileOutputStream(outputFile);
-    	System.setOut(new PrintStream(outputStream));
+		input = inputFile;
+		output = outputFile;
+		
+		FileInputStream currentStream = new FileInputStream(inputFile);
+		System.setIn(currentStream);
+
+		FileOutputStream outputStream = new FileOutputStream(outputFile);
+		System.setOut(new PrintStream(outputStream));
 
     	 boolean b = false; 
 	        while (!BinaryStdIn.isEmpty()) {
@@ -49,6 +37,5 @@ public class RunLengthExpand {
 	        BinaryStdOut.close();
 		currentStream.close();
 	        outputStream.close();
-		System.exit(0);
 	}
 }
