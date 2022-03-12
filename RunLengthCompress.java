@@ -25,17 +25,6 @@ public class RunLengthCompress {
 		FileOutputStream outputStream = new FileOutputStream(outputFile);
 		System.setOut(new PrintStream(outputStream));
 
-    	System.out.println(outputFile);
-    	
-    	if(outputFile == null) {
-    	 CallFileSaver();
-    	}
-    	currentStream = new FileInputStream(file);
-    	System.setIn(currentStream);
-    
-    	outputStream = new FileOutputStream(outputFile);
-    	System.setOut(new PrintStream(outputStream));
-
     	 char run = 0; 
 	        boolean b = false;
 	        boolean old = false; 
