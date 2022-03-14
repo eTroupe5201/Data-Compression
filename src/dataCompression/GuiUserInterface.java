@@ -66,7 +66,12 @@ public class GuiUserInterface extends JFrame implements ActionListener{
 	
 		
 	}
-
+	
+	 protected void processWindowEvent(WindowEvent e) {
+         if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+            System.exit(0);
+         }
+      }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Get the test of the button to send to file chooser
@@ -77,8 +82,13 @@ public class GuiUserInterface extends JFrame implements ActionListener{
 			
 			//figure out for cancel without throwing exception	
 			name = button.getText();//get the name of the button pushed by user
-		
-			new FileChooser(name);//send to the file chooser
+			if(name == "BINARY DUMP" || name == "RUN LENGTH COMPRESS" || name == "RUN LENGTH EXPAND" || name == "HUFFMAN COMPRESS" || name == "HUFFMAN EXPAND" ) {
+				new FileChooser(name);//send to the file chooser
+				}else {
+					processWindowEvent(null); // fix the last bug
+					}
+				
+			
 			
 		} catch (IllegalArgumentException e1) {
 		//e1.printStackTrace();
@@ -88,3 +98,4 @@ public class GuiUserInterface extends JFrame implements ActionListener{
 	}
 
 }
+
